@@ -1,16 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-
-
-class Footer extends Component{
-
-
-  render(){
-    return(
+class Footer extends Component {
+  render() {
+    return (
       <>
-        Footer
+        <footer className='footer'>Made by Kevinn & Lex</footer>
       </>
-    )
+    );
   }
 }
-export default Footer
+export default Footer;
