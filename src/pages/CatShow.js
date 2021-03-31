@@ -6,9 +6,13 @@ class CatShow extends Component{
 
 
   render(){
+    const cat = this.props.cat;
     return(
       <>
-        CatShow
+        <h2>Show</h2>
+        <div>Name: { cat.name }</div>
+        <div>Age: { cat.age }</div>
+        <div>Enjoys: { cat.enjoys }</div>
       </>
     )
   }
