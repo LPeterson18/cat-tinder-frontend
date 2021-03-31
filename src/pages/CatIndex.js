@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import {
   Card,
   Button,
@@ -43,6 +44,10 @@ class CatIndex extends Component {
             );
           })}
         </Row>
+        <Button color='primary' href='/catNew'>
+          Add a Cat
+        </Button>
+
       </>
     );
   }
