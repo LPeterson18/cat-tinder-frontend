@@ -22,7 +22,6 @@ describe('When App renders', () => {
 
     // act
     const renderedHeader = renderedApp.find('Header');
-    // console.log(renderedHeader.debug());
     const renderedFooter = renderedApp.find('Footer');
 
     // assert
@@ -35,8 +34,6 @@ describe('When App renders', () => {
 
     // act
     const renderedHomeRoute = renderedApp.find('[path="/"]');
-    // console.log(renderedHomeRoute.debug());
-    // console.log(renderedHomeRoute.props().component);
     // assert
     expect(renderedHomeRoute.length).toEqual(1);
     expect(renderedHomeRoute.props().component).toEqual(Home);

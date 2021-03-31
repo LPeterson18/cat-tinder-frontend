@@ -13,14 +13,32 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      cats: cats,
+    }
+  }
+
+
+
   render() {
     return (
       <Router>
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/catIndex' component={CatIndex} />
-          <Route path='/catShow/:id' component={CatShow} />
+          <Route
+          path='/catIndex'
+          render = { () => <CatIndex cats={ this.state.cats}/> }
+          />
+          <Route
+          path='/catShow/:id'
+          render={ (props) => {
+          const id = parseInt(props.match.params.id)
+          const foundKitty = this.state.cats.find((cat) => cat.id === id)
+          return <CatShow cat={ foundKitty }/>
+          }}/>
           <Route path='/catNew' component={CatNew} />
           <Route path='/catEdit/:id' component={CatEdit} />
           <Route component={NotFound} />
