@@ -1,25 +1,50 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {
+  Card,
+  Button,
+  CardTitle,
+  CardImg,
+  CardBody,
+  CardSubtitle,
+  CardText,
+  Row,
+  Col,
+} from 'reactstrap';
 
-
-
-class CatIndex extends Component{
-
-
-  render(){
-    return(
+class CatIndex extends Component {
+  render() {
+    return (
       <>
         <h2>CatIndex</h2>
-        <ul>
-        {this.props.cats.map(cat => {
-          return (
-            <li>
-              <a href={`/catShow/${cat.id}`}>{ cat.name }</a>
-            </li>
-          )
-        })}
-        </ul>
+        <Row sm='4'>
+          {this.props.cats.map((cat) => {
+            return (
+              <Col sm='4'>
+                <Card>
+                  <CardImg
+                    top
+                    width='100%'
+                    src={cat.profile_pic}
+                    alt='Cat profile picture'
+                  />
+                  <CardBody>
+                    <CardTitle tag='h5'>{cat.name}</CardTitle>
+                    <CardSubtitle tag='h6' className='mb-2 text-muted'>
+                      Age: {cat.age}
+                    </CardSubtitle>
+                    <CardText>
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </CardText>
+                    <Button href={`/catShow/${cat.id}`}>Meet {cat.name}</Button>
+                  </CardBody>
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
       </>
-    )
+    );
   }
 }
-export default CatIndex
+export default CatIndex;
