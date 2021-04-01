@@ -10,6 +10,7 @@ class CatNew extends Component {
         name: '',
         age: '',
         enjoys: '',
+        profile_pic:'',
       },
       submitted: false,
     };
@@ -59,7 +60,16 @@ class CatNew extends Component {
                   value={this.state.form.enjoys}
                   onChange={this.handleChange}
                 />
-              </FormGroup>
+                </FormGroup>
+                <FormGroup>
+                  <Label for='profile_pic'>Paste a url linking to your cat's picture.</Label>
+                  <Input
+                    type='text'
+                    name='profile_pic'
+                    value={this.state.form.profile_pic}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
               <Button onClick={this.handleSubmit}>Submit Cat</Button>
             </Form>
           </Col>
