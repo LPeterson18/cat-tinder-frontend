@@ -76,7 +76,9 @@ class CatEdit extends Component {
             </Form>
           </Col>
         </Row>
-        {this.state.submitted && <Redirect to='/catIndex' />}
+        {this.state.submitted && (
+          <Redirect to={`/catShow/${this.props.cat.id}`} />
+        )}
       </>
     );
   }
