@@ -20,7 +20,7 @@ class CatIndex extends Component {
         <Row sm='4'>
           {this.props.cats.map((cat) => {
             return (
-              <Col sm='4'>
+              <Col key={cat.id} sm='4'>
                 <Card>
                   <CardImg
                     top
@@ -47,7 +47,6 @@ class CatIndex extends Component {
         <Button color='primary' href='/catNew'>
           Add a Cat
         </Button>
-
       </>
     );
   }
