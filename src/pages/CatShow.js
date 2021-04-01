@@ -12,6 +12,9 @@ class CatShow extends Component {
         <Button href='/catIndex' color='primary'>
           Back to Cats
         </Button>
+        <Button href={`/catEdit/${cat.id}`} color='primary'>
+          Edit {cat.name}
+        </Button>
       </>
     );
   }
