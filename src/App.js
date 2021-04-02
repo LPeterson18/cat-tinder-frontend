@@ -21,25 +21,44 @@ class App extends Component {
     };
   }
 
-  componentDidMount(){
-    this.catIndex()
+  componentDidMount() {
+    this.catIndex();
   }
 
   catIndex = () => {
-    fetch("http://localhost:3000/cats")
-    .then(response => {
-      return response.json()
-    })
-    .then(arrayOfCats => {
-      this.setState({ cats:arrayOfCats })
-    })
-    .catch(errors => {
-      console.log("index errors:", errors);
-    })
-  }
+    fetch('http://localhost:3000/cats')
+      .then((response) => {
+        return response.json();
+      })
+      .then((arrayOfCats) => {
+        this.setState({ cats: arrayOfCats });
+      })
+      .catch((errors) => {
+        console.log('index errors:', errors);
+      });
+  };
 
   createNewCat = (newCat) => {
-    console.log(newCat);
+    fetch('http://localhost:3000/cats', {
+      body: JSON.stringify(newCat),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    })
+      .then((response) => {
+        if (response.status === 422) {
+          alert('Something went wrong here');
+        } else {
+          return response.json();
+        }
+      })
+      .then((payload) => {
+        this.catIndex();
+      })
+      .catch((errors) => {
+        console.log('create errors', errors);
+      });
   };
 
   editCat = (editedCat) => {
@@ -60,8 +79,8 @@ class App extends Component {
             path='/catShow/:id'
             render={(props) => {
               const id = parseInt(props.match.params.id);
-              const foundKitty = this.state.cats.find(cat => cat.id === id);
-              return <CatShow cat={ foundKitty } />;
+              const foundKitty = this.state.cats.find((cat) => cat.id === id);
+              return <CatShow cat={foundKitty} />;
             }}
           />
           <Route
