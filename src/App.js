@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import cats from './mockCats.js';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CatIndex from './pages/CatIndex';
@@ -10,14 +9,33 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import './App.css';
 
+//import cats from './mockCats.js'
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cats: cats,
+      cats: [],
     };
+  }
+
+  componentDidMount(){
+    this.catIndex()
+  }
+
+  catIndex = () => {
+    fetch("http://localhost:3000/cats")
+    .then(response => {
+      return response.json()
+    })
+    .then(arrayOfCats => {
+      this.setState({ cats:arrayOfCats })
+    })
+    .catch(errors => {
+      console.log("index errors:", errors);
+    })
   }
 
   createNewCat = (newCat) => {
@@ -42,8 +60,8 @@ class App extends Component {
             path='/catShow/:id'
             render={(props) => {
               const id = parseInt(props.match.params.id);
-              const foundKitty = this.state.cats.find((cat) => cat.id === id);
-              return <CatShow cat={foundKitty} />;
+              const foundKitty = this.state.cats.find(cat => cat.id === id);
+              return <CatShow cat={ foundKitty } />;
             }}
           />
           <Route
