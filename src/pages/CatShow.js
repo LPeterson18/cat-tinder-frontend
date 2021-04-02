@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
+import { NavLink } from 'react-router-dom'
 
 class CatShow extends Component {
   render() {
     const cat = this.props.cat;
+    debugger
     return (
       <>
         <h2>{cat.name}</h2>
+        <img src={cat.profile_pic}/>
         <div>Age: {cat.age}</div>
         <div>Enjoys: {cat.enjoys}</div>
-        <Button href='/catIndex' color='primary'>
+        <NavLink to='/catIndex' color='primary'>
           Back to Cats
-        </Button>
-        <Button href={`/catEdit/${cat.id}`} color='primary'>
+        </NavLink>
+        <NavLink to={`/catEdit/${cat.id}`} color='primary'>
           Edit {cat.name}
-        </Button>
+        </NavLink>
       </>
     );
   }

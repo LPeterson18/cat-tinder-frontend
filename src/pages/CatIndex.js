@@ -11,6 +11,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import { NavLink } from 'react-router-dom'
 
 class CatIndex extends Component {
   render() {
@@ -37,7 +38,7 @@ class CatIndex extends Component {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </CardText>
-                    <Button href={`/catShow/${cat.id}`}>Meet {cat.name}</Button>
+                    <NavLink to={`/catShow/${cat.id}`}>Meet {cat.name}</NavLink>
                   </CardBody>
                 </Card>
               </Col>
