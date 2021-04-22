@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom'
 class CatShow extends Component {
   render() {
     const cat = this.props.cat;
-    debugger
     return (
       <>
         <h2>{cat.name}</h2>
@@ -17,6 +16,11 @@ class CatShow extends Component {
         </NavLink>
         <NavLink to={`/catEdit/${cat.id}`} color='primary'>
           Edit {cat.name}
+        </NavLink>
+        <NavLink to={"/catindex"}>
+          <Button color="secondary"onClick={ () => this.props.deleteCat(this.props.cat.id) }>
+            Delete Cat Profile
+          </Button>
         </NavLink>
       </>
     );
