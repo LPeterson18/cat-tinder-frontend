@@ -61,9 +61,48 @@ class App extends Component {
       });
   };
 
-  editCat = (editedCat) => {
-    console.log(editedCat);
-  };
+  editCat = (editedCat, id) => {
+    return fetch(`http://localhost:3000/cats/${id}`, {
+      body: JSON.stringify(editedCat),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "PATCH"
+    })
+    .then(response => {
+      if(response.status === 422){
+        alert("Please check your submission.")
+      }
+      return response.json()
+    })
+    .then(payload => {
+      this.catIndex()
+    })
+    .catch(errors => {
+      console.log("update errors:", errors)
+    })
+  }
+
+  deleteCat = (id) => {
+    fetch(`http://localhost:3000/cats/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+    .then(response => {
+      if(response.status === 422){
+        alert("Something is wrong with your submission.")
+      }
+      return response.json()
+    })
+    .then(payload => {
+      this.catIndex()
+    })
+    .catch(errors => {
+      console.log("delete errors:", errors)
+    })
+  }
 
   render() {
     return (
@@ -80,7 +119,7 @@ class App extends Component {
             render={(props) => {
               const id = parseInt(props.match.params.id);
               const foundKitty = this.state.cats.find((cat) => cat.id === id);
-              return <CatShow cat={foundKitty} />;
+              return <CatShow cat={foundKitty} deleteCat={ this.deleteCat }/>;
             }}
           />
           <Route
